@@ -47,7 +47,7 @@ document.getElementById("card").onclick = () => {
 };
 
 function nextCard() {
-  index = (index + 1) % cards.length;
+  index = Math.floor(Math.random() * cards.length);
   showCard();
 }
 </script>
