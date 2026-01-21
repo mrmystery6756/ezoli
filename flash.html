@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Flashcards</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+    .card { border: 1px solid #333; padding: 30px; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+<h1>Flashcards</h1>
+<div class="card" id="card">Click to flip</div>
+<br>
+<button onclick="nextCard()">Next</button>
+
+<script>
+let cards = [];
+let index = 0;
+let showingAnswer = false;
+
+fetch("flashcards.json")
+  .then(r => r.json())
+  .then(data => {
+    cards = data;
+    showCard();
+  });
+
+function showCard() {
+  showingAnswer = false;
+  document.getElementById("card").innerText =
+    cards[index].question;
+}
+
+document.getElementById("card").onclick = () => {
+  showingAnswer = !showingAnswer;
+  document.getElementById("card").innerText =
+    showingAnswer ? cards[index].answer : cards[index].question;
+};
+
+function nextCard() {
+  index = (index + 1) % cards.length;
+  showCard();
+}
+</script>
+
+</body>
+</html>
