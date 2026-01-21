@@ -20,10 +20,17 @@ let cards = [];
 let index = 0;
 let showingAnswer = false;
 
-fetch("flashcards.json")
-  .then(r => r.json())
+fetch("ports_comptia_a_plus.txt")
+  .then(r => r.text())
   .then(data => {
-    cards = data;
+    const lines = data.trim().split('\n');
+    cards = lines.map(line => {
+      const parts = line.split('\t');
+      return {
+        question: parts[0],
+        answer: parts[1] + ' (' + parts[2] + ')'
+      };
+    });
     showCard();
   });
 
