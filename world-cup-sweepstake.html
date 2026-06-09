@@ -211,8 +211,7 @@
               winner: ""
             });
           }
-          const nextRoundSlots = Array.from({ length: matchCount }, () => "");
-          currentRoundTeams = nextRoundSlots;
+          currentRoundTeams = Array.from({ length: matchCount }, () => "");
           return { id: roundIndex, name, matches };
         });
         return rounds;
@@ -259,7 +258,7 @@
 
       function winnerOptions(match) {
         return ["", match.teamA, match.teamB]
-          .filter((v, index) => v || index === 0)
+          .filter((v, index) => index === 0 || String(v).trim() !== "")
           .map((team) => {
             const selected = team === match.winner ? "selected" : "";
             const label = team || "Select winner";
@@ -326,7 +325,7 @@
         captureInputs();
         saveData(state);
         renderBracket();
-        modeText.textContent = "Admin mode: changes saved";
+        modeText.textContent = "Admin mode: editing enabled (changes saved)";
       });
 
       resetBtn.addEventListener("click", () => {
