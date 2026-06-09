@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>World Cup 2026 Sweepstake</title>
+    <style>
+      :root {
+        color-scheme: light;
+      }
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #68b9e6;
+        color: #092f6e;
+      }
+      .page {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 1rem;
+      }
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+      }
+      .header {
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+      .header p {
+        margin-top: 0.5rem;
+      }
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        justify-content: center;
+        margin: 1rem 0;
+      }
+      button {
+        border: none;
+        border-radius: 8px;
+        padding: 0.6rem 1rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .primary {
+        background: #0f397f;
+        color: white;
+      }
+      .danger {
+        background: #ca2f4e;
+        color: white;
+      }
+      .info {
+        font-weight: 700;
+        text-align: center;
+      }
+      .layout {
+        display: grid;
+        gap: 1rem;
+      }
+      .panel {
+        background: rgba(255, 255, 255, 0.92);
+        border-radius: 12px;
+        padding: 1rem;
+        box-shadow: 0 8px 22px rgba(7, 40, 92, 0.15);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border-bottom: 1px solid #d8e4f7;
+        padding: 0.45rem;
+        text-align: left;
+      }
+      th {
+        color: #0f397f;
+      }
+      .bracket-columns {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1rem;
+      }
+      .round {
+        background: #f5f9ff;
+        border: 1px solid #d7e5f7;
+        border-radius: 10px;
+        padding: 0.75rem;
+      }
+      .match {
+        border: 1px solid #dbe8fa;
+        border-radius: 8px;
+        padding: 0.5rem;
+        margin-top: 0.55rem;
+        background: white;
+      }
+      .match-row {
+        display: grid;
+        grid-template-columns: 1fr 56px;
+        gap: 0.45rem;
+        margin-top: 0.35rem;
+      }
+      .match-row input,
+      .winner select {
+        width: 100%;
+        padding: 0.35rem;
+        border: 1px solid #c6d8f4;
+        border-radius: 6px;
+      }
+      .winner {
+        margin-top: 0.4rem;
+      }
+      .read-only input,
+      .read-only select {
+        background: #edf2fa;
+      }
+      @media (min-width: 1080px) {
+        .layout {
+          grid-template-columns: 1fr 1.5fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="header">
+        <h1>World Cup 2026 Sweepstake</h1>
+        <p>Separate admin-editable bracket page for scores and teams advancing.</p>
+      </div>
+
+      <div class="toolbar">
+        <button id="toggleAdmin" class="primary">Enable Admin Edit</button>
+        <button id="save" class="primary" hidden>Save Changes</button>
+        <button id="reset" class="danger" hidden>Reset to Default</button>
+      </div>
+      <p id="modeText" class="info">View mode: locked</p>
+
+      <div class="layout">
+        <section class="panel">
+          <h2>Team Draw</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Team</th>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody id="drawTable"></tbody>
+          </table>
+        </section>
+
+        <section class="panel">
+          <h2>Knockout Bracket</h2>
+          <div id="bracket" class="bracket-columns"></div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      const STORAGE_KEY = "worldCupSweepstakeData";
+
+      const defaultAssignments = [
+        ["Mexico", "Alec"], ["South Korea", "Liam Spence"], ["Canada", "James Steers"], ["Qatar", "James Steers"],
+        ["Brazil", "Brenden"], ["Haiti", "Treats"], ["USA", "James Steers"], ["Australia", "Jess"],
+        ["Germany", "Rory"], ["Côte d'Ivoire", "Getley"], ["Netherlands", "Sam"], ["Sweden", "John G"],
+        ["Belgium", "Getley"], ["IR Iran", "Bryce"], ["Spain", "Oli"], ["Saudi Arabia", "Rory"],
+        ["France", "Bryce"], ["Iraq", "Sam"], ["Argentina", "Liam Spence"], ["Austria", "Jlamb"],
+        ["Portugal", "Leon"], ["Uzbekistan", "Liam Spence"], ["England", "Kane"], ["Ghana", "Leon"],
+        ["South Africa", "Getley"], ["Czechia", "Liam Studd"], ["Bosnia-Herzegovina", "Kane"], ["Switzerland", "Leon"],
+        ["Morocco", "Jlamb"], ["Scotland", "Alec"], ["Paraguay", "Brenden"], ["Türkiye", "Alec"],
+        ["Curaçao", "Treats"], ["Ecuador", "Sam"], ["Japan", "Rory"], ["Tunisia", "Oli"],
+        ["Egypt", "Oli"], ["New Zealand", "Treats"], ["Cabo Verde", "Jlamb"], ["Uruguay", "Brenden"],
+        ["Senegal", "John G"], ["Norway", "John G"], ["Algeria", "Kane"], ["Jordan", "Jess"],
+        ["Congo DR", "Bryce"], ["Colombia", "Liam Studd"], ["Croatia", "Jess"], ["Panama", "Liam Studd"]
+      ].map(([team, owner]) => ({ team, owner }));
+
+      const roundConfig = [
+        ["Round of 48", 24],
+        ["Round of 24", 12],
+        ["Round of 12", 6],
+        ["Quarter Finals", 4],
+        ["Semi Finals", 2],
+        ["Final", 1]
+      ];
+
+      function generateDefaultBracket(assignments) {
+        let teams = assignments.map((entry) => entry.team);
+        const rounds = roundConfig.map(([name, matchCount], roundIndex) => {
+          const matches = [];
+          for (let i = 0; i < matchCount; i++) {
+            const teamA = teams[i * 2] || "";
+            const teamB = teams[i * 2 + 1] || "";
+            matches.push({
+              teamA,
+              teamB,
+              scoreA: "",
+              scoreB: "",
+              winner: ""
+            });
+          }
+          teams = Array.from({ length: Math.ceil(matchCount / 2) }, () => "");
+          return { id: roundIndex, name, matches };
+        });
+        return rounds;
+      }
+
+      function loadData() {
+        const fallback = {
+          assignments: defaultAssignments,
+          rounds: generateDefaultBracket(defaultAssignments)
+        };
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return fallback;
+          const parsed = JSON.parse(raw);
+          if (!parsed?.assignments || !parsed?.rounds) return fallback;
+          return parsed;
+        } catch {
+          return fallback;
+        }
+      }
+
+      function saveData(data) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      }
+
+      let state = loadData();
+      let adminMode = false;
+
+      const drawTable = document.getElementById("drawTable");
+      const bracket = document.getElementById("bracket");
+      const modeText = document.getElementById("modeText");
+      const toggleAdmin = document.getElementById("toggleAdmin");
+      const saveBtn = document.getElementById("save");
+      const resetBtn = document.getElementById("reset");
+
+      function renderDraw() {
+        drawTable.innerHTML = state.assignments
+          .map(
+            ({ team, owner }) =>
+              `<tr><td>${team}</td><td>${owner}</td></tr>`
+          )
+          .join("");
+      }
+
+      function winnerOptions(match) {
+        return ["", match.teamA, match.teamB]
+          .filter((v, index, arr) => v || index === 0)
+          .map((team) => {
+            const selected = team === match.winner ? "selected" : "";
+            const label = team || "Select winner";
+            return `<option value="${team}" ${selected}>${label}</option>`;
+          })
+          .join("");
+      }
+
+      function renderBracket() {
+        bracket.classList.toggle("read-only", !adminMode);
+
+        bracket.innerHTML = state.rounds
+          .map((round, roundIndex) => {
+            const matches = round.matches
+              .map(
+                (match, matchIndex) => `
+                <div class="match" data-round="${roundIndex}" data-match="${matchIndex}">
+                  <h3>Match ${matchIndex + 1}</h3>
+                  <div class="match-row">
+                    <input data-field="teamA" value="${match.teamA}" ${adminMode ? "" : "disabled"} />
+                    <input data-field="scoreA" value="${match.scoreA}" ${adminMode ? "" : "disabled"} />
+                  </div>
+                  <div class="match-row">
+                    <input data-field="teamB" value="${match.teamB}" ${adminMode ? "" : "disabled"} />
+                    <input data-field="scoreB" value="${match.scoreB}" ${adminMode ? "" : "disabled"} />
+                  </div>
+                  <div class="winner">
+                    <select data-field="winner" ${adminMode ? "" : "disabled"}>
+                      ${winnerOptions(match)}
+                    </select>
+                  </div>
+                </div>`
+              )
+              .join("");
+
+            return `<div class="round"><h3>${round.name}</h3>${matches}</div>`;
+          })
+          .join("");
+      }
+
+      function captureInputs() {
+        document.querySelectorAll(".match").forEach((matchEl) => {
+          const r = Number(matchEl.dataset.round);
+          const m = Number(matchEl.dataset.match);
+          if (!state.rounds[r] || !state.rounds[r].matches[m]) return;
+
+          matchEl.querySelectorAll("[data-field]").forEach((input) => {
+            const field = input.dataset.field;
+            state.rounds[r].matches[m][field] = input.value;
+          });
+        });
+      }
+
+      toggleAdmin.addEventListener("click", () => {
+        adminMode = !adminMode;
+        modeText.textContent = adminMode ? "Admin mode: editing enabled" : "View mode: locked";
+        toggleAdmin.textContent = adminMode ? "Disable Admin Edit" : "Enable Admin Edit";
+        saveBtn.hidden = !adminMode;
+        resetBtn.hidden = !adminMode;
+        renderBracket();
+      });
+
+      saveBtn.addEventListener("click", () => {
+        captureInputs();
+        saveData(state);
+        renderBracket();
+        modeText.textContent = "Admin mode: changes saved";
+      });
+
+      resetBtn.addEventListener("click", () => {
+        if (!confirm("Reset all bracket values to default?")) return;
+        state = {
+          assignments: defaultAssignments,
+          rounds: generateDefaultBracket(defaultAssignments)
+        };
+        saveData(state);
+        renderDraw();
+        renderBracket();
+      });
+
+      renderDraw();
+      renderBracket();
+    </script>
+  </body>
+</html>
