@@ -202,6 +202,15 @@
               winner: ""
             });
           }
+
+          function escapeHtml(value) {
+            return String(value ?? "")
+              .replaceAll("&", "&amp;")
+              .replaceAll("<", "&lt;")
+              .replaceAll(">", "&gt;")
+              .replaceAll("\"", "&quot;")
+              .replaceAll("'", "&#39;");
+          }
           teams = Array.from({ length: Math.ceil(matchCount / 2) }, () => "");
           return { id: roundIndex, name, matches };
         });
@@ -242,7 +251,7 @@
         drawTable.innerHTML = state.assignments
           .map(
             ({ team, owner }) =>
-              `<tr><td>${team}</td><td>${owner}</td></tr>`
+              `<tr><td>${escapeHtml(team)}</td><td>${escapeHtml(owner)}</td></tr>`
           )
           .join("");
       }
@@ -253,7 +262,7 @@
           .map((team) => {
             const selected = team === match.winner ? "selected" : "";
             const label = team || "Select winner";
-            return `<option value="${team}" ${selected}>${label}</option>`;
+            return `<option value="${escapeHtml(team)}" ${selected}>${escapeHtml(label)}</option>`;
           })
           .join("");
       }
@@ -269,12 +278,12 @@
                 <div class="match" data-round="${roundIndex}" data-match="${matchIndex}">
                   <h3>Match ${matchIndex + 1}</h3>
                   <div class="match-row">
-                    <input data-field="teamA" value="${match.teamA}" ${adminMode ? "" : "disabled"} />
-                    <input data-field="scoreA" value="${match.scoreA}" ${adminMode ? "" : "disabled"} />
+                    <input data-field="teamA" value="${escapeHtml(match.teamA)}" ${adminMode ? "" : "disabled"} />
+                    <input data-field="scoreA" value="${escapeHtml(match.scoreA)}" ${adminMode ? "" : "disabled"} />
                   </div>
                   <div class="match-row">
-                    <input data-field="teamB" value="${match.teamB}" ${adminMode ? "" : "disabled"} />
-                    <input data-field="scoreB" value="${match.scoreB}" ${adminMode ? "" : "disabled"} />
+                    <input data-field="teamB" value="${escapeHtml(match.teamB)}" ${adminMode ? "" : "disabled"} />
+                    <input data-field="scoreB" value="${escapeHtml(match.scoreB)}" ${adminMode ? "" : "disabled"} />
                   </div>
                   <div class="winner">
                     <select data-field="winner" ${adminMode ? "" : "disabled"}>
