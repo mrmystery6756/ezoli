@@ -211,7 +211,7 @@
               winner: ""
             });
           }
-          currentRoundTeams = Array.from({ length: matchCount }, () => "");
+          currentRoundTeams = Array(matchCount).fill("");
           return { id: roundIndex, name, matches };
         });
         return rounds;
@@ -258,7 +258,7 @@
 
       function winnerOptions(match) {
         return ["", match.teamA, match.teamB]
-          .filter((v, index) => index === 0 || String(v).trim() !== "")
+          .filter((team, index) => index === 0 || String(team).trim() !== "")
           .map((team) => {
             const selected = team === match.winner ? "selected" : "";
             const label = team || "Select winner";
