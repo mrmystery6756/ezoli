@@ -312,7 +312,27 @@
         });
       }
 
+      function syncAdvancingTeams() {
+        for (let roundIndex = 0; roundIndex < state.rounds.length - 1; roundIndex++) {
+          const currentRound = state.rounds[roundIndex];
+          const nextRound = state.rounds[roundIndex + 1];
+          nextRound.matches.forEach((nextMatch, nextMatchIndex) => {
+            const winnerA = currentRound.matches[nextMatchIndex * 2]?.winner || "";
+            const winnerB = currentRound.matches[nextMatchIndex * 2 + 1]?.winner || "";
+            nextMatch.teamA = winnerA;
+            nextMatch.teamB = winnerB;
+            if (nextMatch.winner && nextMatch.winner !== winnerA && nextMatch.winner !== winnerB) {
+              nextMatch.winner = "";
+            }
+          });
+        }
+      }
+
       toggleAdmin.addEventListener("click", () => {
+        if (adminMode) {
+          captureInputs();
+          syncAdvancingTeams();
+        }
         adminMode = !adminMode;
         modeText.textContent = adminMode ? "Admin mode: editing enabled" : "View mode: locked";
         toggleAdmin.textContent = adminMode ? "Disable Admin Edit" : "Enable Admin Edit";
@@ -323,6 +343,7 @@
 
       saveBtn.addEventListener("click", () => {
         captureInputs();
+        syncAdvancingTeams();
         saveData(state);
         renderBracket();
         modeText.textContent = "Admin mode: editing enabled (changes saved)";
