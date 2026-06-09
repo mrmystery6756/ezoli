@@ -187,6 +187,15 @@
         ["Final", 1]
       ];
 
+      function escapeHtml(value) {
+        return String(value ?? "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll("\"", "&quot;")
+          .replaceAll("'", "&#39;");
+      }
+
       function generateDefaultBracket(assignments) {
         let teams = assignments.map((entry) => entry.team);
         const rounds = roundConfig.map(([name, matchCount], roundIndex) => {
@@ -202,16 +211,7 @@
               winner: ""
             });
           }
-
-          function escapeHtml(value) {
-            return String(value ?? "")
-              .replaceAll("&", "&amp;")
-              .replaceAll("<", "&lt;")
-              .replaceAll(">", "&gt;")
-              .replaceAll("\"", "&quot;")
-              .replaceAll("'", "&#39;");
-          }
-          teams = Array.from({ length: Math.ceil(matchCount / 2) }, () => "");
+          teams = Array.from({ length: matchCount }, () => "");
           return { id: roundIndex, name, matches };
         });
         return rounds;
