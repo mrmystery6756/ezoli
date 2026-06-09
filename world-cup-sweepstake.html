@@ -197,12 +197,12 @@
       }
 
       function generateDefaultBracket(assignments) {
-        let teams = assignments.map((entry) => entry.team);
+        let currentRoundTeams = assignments.map((entry) => entry.team);
         const rounds = roundConfig.map(([name, matchCount], roundIndex) => {
           const matches = [];
           for (let i = 0; i < matchCount; i++) {
-            const teamA = teams[i * 2] || "";
-            const teamB = teams[i * 2 + 1] || "";
+            const teamA = currentRoundTeams[i * 2] || "";
+            const teamB = currentRoundTeams[i * 2 + 1] || "";
             matches.push({
               teamA,
               teamB,
@@ -211,7 +211,8 @@
               winner: ""
             });
           }
-          teams = Array.from({ length: matchCount }, () => "");
+          const nextRoundSlots = Array.from({ length: matchCount }, () => "");
+          currentRoundTeams = nextRoundSlots;
           return { id: roundIndex, name, matches };
         });
         return rounds;
@@ -258,7 +259,7 @@
 
       function winnerOptions(match) {
         return ["", match.teamA, match.teamB]
-          .filter((v, index, arr) => v || index === 0)
+          .filter((v, index) => v || index === 0)
           .map((team) => {
             const selected = team === match.winner ? "selected" : "";
             const label = team || "Select winner";
