@@ -125,7 +125,7 @@
       }
       .match-row {
         display: grid;
-        grid-template-columns: 1fr 56px;
+        grid-template-columns: minmax(0, 1fr) 56px;
         gap: 0.45rem;
         margin-top: 0.35rem;
       }
@@ -259,6 +259,10 @@
         ["Congo DR", "Bryce"], ["Colombia", "Liam Studd"], ["Croatia", "Jess"], ["Panama", "Liam Studd"]
       ].map(([team, owner]) => ({ team, owner }));
 
+      const teamOwnerMap = Object.fromEntries(
+        defaultAssignments.map(({ team, owner }) => [team, owner])
+      );
+
       const roundConfig = [
         ["Round of 48", 24],
         ["Round of 24", 12],
@@ -275,6 +279,15 @@
           .replaceAll(">", "&gt;")
           .replaceAll("\"", "&quot;")
           .replaceAll("'", "&#39;");
+      }
+
+      function formatTeamLabel(teamName) {
+        const cleanTeamName = String(teamName ?? "").trim();
+        if (!cleanTeamName) {
+          return "";
+        }
+        const owner = teamOwnerMap[cleanTeamName];
+        return owner ? `${cleanTeamName} (${owner})` : cleanTeamName;
       }
 
       function generateDefaultBracket(assignments) {
@@ -354,7 +367,7 @@
           .filter((team, index) => index === 0 || String(team).trim() !== "")
           .map((team) => {
             const selected = team === match.winner ? "selected" : "";
-            const label = team || "Select winner";
+            const label = team ? formatTeamLabel(team) : "Select winner";
             return `<option value="${escapeHtml(team)}" ${selected}>${escapeHtml(label)}</option>`;
           })
           .join("");
@@ -372,13 +385,13 @@
                   <h3>Match ${matchIndex + 1}</h3>
                   <div class="match-row">
                     <label class="sr-only" for="round-${roundIndex}-match-${matchIndex}-team-a">${escapeHtml(round.name)} match ${matchIndex + 1} team A</label>
-                    <input id="round-${roundIndex}-match-${matchIndex}-team-a" data-field="teamA" value="${escapeHtml(match.teamA)}" ${adminMode ? "" : "disabled"} />
+                    <input id="round-${roundIndex}-match-${matchIndex}-team-a" data-field="teamA" value="${escapeHtml(formatTeamLabel(match.teamA))}" title="${escapeHtml(formatTeamLabel(match.teamA))}" ${adminMode ? "" : "disabled"} />
                     <label class="sr-only" for="round-${roundIndex}-match-${matchIndex}-score-a">${escapeHtml(round.name)} match ${matchIndex + 1} score A</label>
                     <input id="round-${roundIndex}-match-${matchIndex}-score-a" data-field="scoreA" inputmode="numeric" value="${escapeHtml(match.scoreA)}" ${adminMode ? "" : "disabled"} />
                   </div>
                   <div class="match-row">
                     <label class="sr-only" for="round-${roundIndex}-match-${matchIndex}-team-b">${escapeHtml(round.name)} match ${matchIndex + 1} team B</label>
-                    <input id="round-${roundIndex}-match-${matchIndex}-team-b" data-field="teamB" value="${escapeHtml(match.teamB)}" ${adminMode ? "" : "disabled"} />
+                    <input id="round-${roundIndex}-match-${matchIndex}-team-b" data-field="teamB" value="${escapeHtml(formatTeamLabel(match.teamB))}" title="${escapeHtml(formatTeamLabel(match.teamB))}" ${adminMode ? "" : "disabled"} />
                     <label class="sr-only" for="round-${roundIndex}-match-${matchIndex}-score-b">${escapeHtml(round.name)} match ${matchIndex + 1} score B</label>
                     <input id="round-${roundIndex}-match-${matchIndex}-score-b" data-field="scoreB" inputmode="numeric" value="${escapeHtml(match.scoreB)}" ${adminMode ? "" : "disabled"} />
                   </div>
@@ -405,6 +418,12 @@
 
           matchEl.querySelectorAll("[data-field]").forEach((input) => {
             const field = input.dataset.field;
+            if (field === "teamA" || field === "teamB") {
+              const rawValue = String(input.value ?? "").trim();
+              const normalizedValue = rawValue.replace(/\s*\([^)]*\)\s*$/, "");
+              state.rounds[r].matches[m][field] = normalizedValue;
+              return;
+            }
             state.rounds[r].matches[m][field] = input.value;
           });
         });
