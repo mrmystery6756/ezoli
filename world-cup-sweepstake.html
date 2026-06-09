@@ -319,8 +319,13 @@
           nextRound.matches.forEach((nextMatch, nextMatchIndex) => {
             const winnerA = currentRound.matches[nextMatchIndex * 2]?.winner || "";
             const winnerB = currentRound.matches[nextMatchIndex * 2 + 1]?.winner || "";
+            const teamsChanged = nextMatch.teamA !== winnerA || nextMatch.teamB !== winnerB;
             nextMatch.teamA = winnerA;
             nextMatch.teamB = winnerB;
+            if (teamsChanged) {
+              nextMatch.scoreA = "";
+              nextMatch.scoreB = "";
+            }
             if (nextMatch.winner && nextMatch.winner !== winnerA && nextMatch.winner !== winnerB) {
               nextMatch.winner = "";
             }
@@ -350,7 +355,7 @@
       });
 
       resetBtn.addEventListener("click", () => {
-        if (!confirm("Reset all bracket values to default?")) return;
+        if (!confirm("Reset all bracket values to default? This will permanently delete all saved progress.")) return;
         state = {
           assignments: defaultAssignments,
           rounds: generateDefaultBracket(defaultAssignments)
