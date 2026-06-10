@@ -107,12 +107,12 @@
       }
       .bracket-columns {
         --bracket-column-gap: 1rem;
-        --round-gap-round-48: 0.6rem;
-        --round-gap-round-24: 0.95rem;
-        --round-gap-round-12: 1.25rem;
-        --round-gap-quarter-finals: 1.55rem;
-        --round-gap-semi-finals: 1.9rem;
-        --round-gap-final: 0.75rem;
+        --round-gap-r0: 0.6rem;
+        --round-gap-r1: 0.95rem;
+        --round-gap-r2: 1.25rem;
+        --round-gap-r3: 1.55rem;
+        --round-gap-r4: 1.9rem;
+        --round-gap-r5: 0.75rem;
         display: grid;
         grid-auto-flow: column;
         grid-auto-columns: minmax(230px, 1fr);
@@ -136,22 +136,22 @@
       }
       .round-matches {
         display: grid;
-        gap: var(--round-gap-round-48);
+        gap: var(--round-gap-r0);
       }
-      .round:nth-child(2) .round-matches {
-        gap: var(--round-gap-round-24);
+      .round.round-1 .round-matches {
+        gap: var(--round-gap-r1);
       }
-      .round:nth-child(3) .round-matches {
-        gap: var(--round-gap-round-12);
+      .round.round-2 .round-matches {
+        gap: var(--round-gap-r2);
       }
-      .round:nth-child(4) .round-matches {
-        gap: var(--round-gap-quarter-finals);
+      .round.round-3 .round-matches {
+        gap: var(--round-gap-r3);
       }
-      .round:nth-child(5) .round-matches {
-        gap: var(--round-gap-semi-finals);
+      .round.round-4 .round-matches {
+        gap: var(--round-gap-r4);
       }
-      .round:nth-child(6) .round-matches {
-        gap: var(--round-gap-final);
+      .round.round-5 .round-matches {
+        gap: var(--round-gap-r5);
       }
       .match {
         position: relative;
@@ -458,7 +458,7 @@
               )
               .join("");
 
-            return `<div class="round"><h3>${escapeHtml(round.name)}</h3><div class="round-matches">${matches}</div></div>`;
+            return `<div class="round round-${round.id}"><h3>${escapeHtml(round.name)}</h3><div class="round-matches">${matches}</div></div>`;
           })
           .join("");
       }
