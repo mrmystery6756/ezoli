@@ -105,6 +105,29 @@
       th {
         color: #0f397f;
       }
+      .draw-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+        gap: 0.3rem;
+        margin-top: 0.5rem;
+      }
+      .draw-item {
+        display: flex;
+        flex-direction: column;
+        background: #edf4ff;
+        border: 1px solid #d4e3f8;
+        border-radius: 6px;
+        padding: 0.28rem 0.5rem;
+        font-size: 0.82rem;
+        line-height: 1.35;
+      }
+      .draw-team {
+        font-weight: 700;
+        color: #092f6e;
+      }
+      .draw-owner {
+        color: #3a5a9f;
+      }
       .bracket-columns {
         --bracket-column-gap: 1rem;
         --round-gap-r0: 0.6rem;
@@ -255,15 +278,7 @@
       <div class="layout">
         <section class="panel" aria-labelledby="team-draw-heading">
           <h2 id="team-draw-heading">Team Draw</h2>
-          <table>
-            <thead>
-              <tr>
-                <th scope="col">Team</th>
-                <th scope="col">Name</th>
-              </tr>
-            </thead>
-            <tbody id="drawTable"></tbody>
-          </table>
+          <div id="drawGrid" class="draw-grid" role="list" aria-label="Team draw assignments"></div>
         </section>
 
         <section class="panel" aria-labelledby="knockout-bracket-heading">
@@ -421,7 +436,7 @@
       let state = loadData();
       let adminMode = readAdminSession();
 
-      const drawTable = document.getElementById("drawTable");
+      const drawGrid = document.getElementById("drawGrid");
       const round0El = document.getElementById("round0");
       const bracket = document.getElementById("bracket");
       const modeText = document.getElementById("modeText");
@@ -434,10 +449,10 @@
       const authStatus = document.getElementById("authStatus");
 
       function renderDraw() {
-        drawTable.innerHTML = state.assignments
+        drawGrid.innerHTML = state.assignments
           .map(
             ({ team, owner }) =>
-              `<tr><td>${escapeHtml(team)}</td><td>${escapeHtml(owner)}</td></tr>`
+              `<div class="draw-item" role="listitem"><span class="draw-team">${escapeHtml(team)}</span><span class="draw-owner">${escapeHtml(owner)}</span></div>`
           )
           .join("");
       }
