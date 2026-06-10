@@ -467,18 +467,22 @@
                 <div class="match" data-round="${roundIndex}" data-match="${matchIndex}">
                   <h3>Match ${matchIndex + 1}</h3>
                   <div class="match-row">
-                    <label class="sr-only" for="round-${roundIndex}-match-${matchIndex}-team-a">${escapeHtml(round.name)} match ${matchIndex + 1} select team A</label>
-                    <select id="round-${roundIndex}-match-${matchIndex}-team-a" data-field="teamA" ${adminMode ? "" : "disabled"}>
+                    ${adminMode
+                      ? `<label class="sr-only" for="round-${roundIndex}-match-${matchIndex}-team-a">${escapeHtml(round.name)} match ${matchIndex + 1} select team A</label>
+                    <select id="round-${roundIndex}-match-${matchIndex}-team-a" data-field="teamA">
                       ${teamOptions(match.teamA, availableTeams, baseTeamOptionValues)}
-                    </select>
+                    </select>`
+                      : `<div class="field">${escapeHtml(formatTeamLabel(match.teamA))}</div>`}
                     <label class="sr-only" for="round-${roundIndex}-match-${matchIndex}-score-a">${escapeHtml(round.name)} match ${matchIndex + 1} score A</label>
                     <input id="round-${roundIndex}-match-${matchIndex}-score-a" data-field="scoreA" inputmode="numeric" value="${escapeHtml(match.scoreA)}" ${adminMode ? "" : "disabled"} />
                   </div>
                   <div class="match-row">
-                    <label class="sr-only" for="round-${roundIndex}-match-${matchIndex}-team-b">${escapeHtml(round.name)} match ${matchIndex + 1} select team B</label>
-                    <select id="round-${roundIndex}-match-${matchIndex}-team-b" data-field="teamB" ${adminMode ? "" : "disabled"}>
+                    ${adminMode
+                      ? `<label class="sr-only" for="round-${roundIndex}-match-${matchIndex}-team-b">${escapeHtml(round.name)} match ${matchIndex + 1} select team B</label>
+                    <select id="round-${roundIndex}-match-${matchIndex}-team-b" data-field="teamB">
                       ${teamOptions(match.teamB, availableTeams, baseTeamOptionValues)}
-                    </select>
+                    </select>`
+                      : `<div class="field">${escapeHtml(formatTeamLabel(match.teamB))}</div>`}
                     <label class="sr-only" for="round-${roundIndex}-match-${matchIndex}-score-b">${escapeHtml(round.name)} match ${matchIndex + 1} score B</label>
                     <input id="round-${roundIndex}-match-${matchIndex}-score-b" data-field="scoreB" inputmode="numeric" value="${escapeHtml(match.scoreB)}" ${adminMode ? "" : "disabled"} />
                   </div>
