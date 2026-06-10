@@ -288,41 +288,18 @@
         </section>
       </div>
 
-      <div class="toolbar" aria-label="Bracket actions">
-        <button id="save" class="primary" hidden>Save Changes</button>
-        <button id="reset" class="danger" hidden>Reset to Default</button>
-      </div>
-      <p id="modeText" class="info">View mode: locked</p>
+      <p id="modeText" class="info">Loading shared bracket data…</p>
 
-      <section class="panel auth-panel" aria-labelledby="admin-login-heading">
-        <h2 id="admin-login-heading">Admin access</h2>
-        <form id="loginForm">
-          <div class="field-group">
-            <div>
-              <label for="username">Username</label>
-              <input id="username" name="username" type="text" autocomplete="username" required />
-            </div>
-            <div>
-              <label for="password">Password</label>
-              <input id="password" name="password" type="password" autocomplete="current-password" required />
-            </div>
-          </div>
-          <div class="toolbar">
-            <button type="submit" class="primary">Sign in as admin</button>
-            <button type="button" id="logout" class="secondary" hidden>Sign out</button>
-          </div>
-        </form>
-        <p id="authStatus" class="auth-status" role="status" aria-live="polite">Admin mode is off.</p>
+      <section class="panel auth-panel" aria-labelledby="updates-heading">
+        <h2 id="updates-heading">Updates</h2>
+        <p>This page now reads shared sweepstake data from <code>world-cup-data.json</code>.</p>
+        <p>Edit that file in GitHub to publish score or bracket updates for everyone.</p>
+        <p id="dataStatus" class="auth-status" role="status" aria-live="polite">Loading shared bracket data…</p>
       </section>
     </div>
 
     <script>
-      const STORAGE_KEY = "worldCupSweepstakeData";
-      const ADMIN_SESSION_KEY = "worldCupSweepstakeAdminSession";
-      const ADMIN_CREDENTIALS = {
-        username: "admin",
-        password: "BWIT-CLN3362"
-      };
+      const DATA_FILE_NAME = "world-cup-data.json";
 
       const defaultAssignments = [
         ["Mexico", "Alec"], ["South Korea", "Liam Spence"], ["Canada", "James Steers"], ["Qatar", "James Steers"],
@@ -338,10 +315,6 @@
         ["Senegal", "John G"], ["Norway", "John G"], ["Algeria", "Kane"], ["Jordan", "Jess"],
         ["Congo DR", "Bryce"], ["Colombia", "Liam Studd"], ["Croatia", "Jess"], ["Panama", "Liam Studd"]
       ].map(([team, owner]) => ({ team, owner }));
-
-      const teamOwnerMap = Object.fromEntries(
-        defaultAssignments.map(({ team, owner }) => [team, owner])
-      );
 
       const roundConfig = [
         ["Round of 48", 72],
@@ -405,48 +378,96 @@
         });
       }
 
-      function loadData() {
-        const fallback = {
-          assignments: defaultAssignments,
-          rounds: generateDefaultBracket(defaultAssignments)
+      function cloneAssignments(assignments) {
+        return assignments.map(({ team, owner }) => ({ team, owner }));
+      }
+
+      function createDefaultState() {
+        const assignments = cloneAssignments(defaultAssignments);
+        return {
+          assignments,
+          rounds: generateDefaultBracket(assignments)
         };
+      }
+
+      function normalizeAssignments(assignments) {
+        if (!Array.isArray(assignments) || assignments.length === 0) {
+          return cloneAssignments(defaultAssignments);
+        }
+        return assignments.map((entry) => ({
+          team: String(entry?.team ?? ""),
+          owner: String(entry?.owner ?? "")
+        }));
+      }
+
+      function normalizeRounds(rounds, assignments) {
+        const defaultRounds = generateDefaultBracket(assignments);
+        if (!Array.isArray(rounds)) {
+          return defaultRounds;
+        }
+        return migrateRounds(
+          defaultRounds.map((defaultRound, roundIndex) => {
+            const round = rounds[roundIndex];
+            if (!round || !Array.isArray(round.matches)) {
+              return defaultRound;
+            }
+
+            return {
+              id: defaultRound.id,
+              name: String(round.name ?? defaultRound.name),
+              matches: defaultRound.matches.map((defaultMatch, matchIndex) => {
+                const match = round.matches[matchIndex];
+                if (!match) {
+                  return defaultMatch;
+                }
+                return {
+                  teamA: String(match.teamA ?? defaultMatch.teamA ?? ""),
+                  teamB: String(match.teamB ?? defaultMatch.teamB ?? ""),
+                  scoreA: String(match.scoreA ?? ""),
+                  scoreB: String(match.scoreB ?? ""),
+                  winner: String(match.winner ?? "")
+                };
+              })
+            };
+          })
+        );
+      }
+
+      function normalizeState(data) {
+        const assignments = normalizeAssignments(data?.assignments);
+        return {
+          assignments,
+          rounds: normalizeRounds(data?.rounds, assignments)
+        };
+      }
+
+      async function loadData() {
         try {
-          const raw = localStorage.getItem(STORAGE_KEY);
-          if (!raw) return fallback;
-          const parsed = JSON.parse(raw);
-          if (!parsed?.assignments || !parsed?.rounds) return fallback;
-          return { ...parsed, rounds: migrateRounds(parsed.rounds) };
+          const response = await fetch(DATA_FILE_NAME, { cache: "no-cache" });
+          if (!response.ok) {
+            throw new Error(`Request failed with status ${response.status}`);
+          }
+          const parsed = await response.json();
+          return {
+            state: normalizeState(parsed),
+            usingFallback: false
+          };
         } catch {
-          return fallback;
+          return {
+            state: createDefaultState(),
+            usingFallback: true
+          };
         }
       }
 
-      function saveData(data) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      }
-
-      function readAdminSession() {
-        return localStorage.getItem(ADMIN_SESSION_KEY) === "true";
-      }
-
-      function writeAdminSession(isEnabled) {
-        localStorage.setItem(ADMIN_SESSION_KEY, isEnabled ? "true" : "false");
-      }
-
-      let state = loadData();
-      let adminMode = readAdminSession();
+      let state = null;
+      let teamOwnerMap = {};
 
       const drawGrid = document.getElementById("drawGrid");
       const round0El = document.getElementById("round0");
       const bracket = document.getElementById("bracket");
       const modeText = document.getElementById("modeText");
-      const saveBtn = document.getElementById("save");
-      const resetBtn = document.getElementById("reset");
-      const loginForm = document.getElementById("loginForm");
-      const logoutBtn = document.getElementById("logout");
-      const usernameInput = document.getElementById("username");
-      const passwordInput = document.getElementById("password");
-      const authStatus = document.getElementById("authStatus");
+      const dataStatus = document.getElementById("dataStatus");
 
       function renderDraw() {
         drawGrid.innerHTML = state.assignments
@@ -468,34 +489,9 @@
           .join("");
       }
 
-      function getAvailableTeams() {
-        return new Set(
-          state.assignments
-            .map(({ team }) => String(team ?? "").trim())
-            .filter((team) => team !== "")
-        );
-      }
-
-      function teamOptions(selectedTeam, availableTeams, baseOptionValues) {
-        const selected = String(selectedTeam ?? "").trim();
-        const options = [...baseOptionValues];
-        if (selected && !availableTeams.has(selected)) {
-          options.push(selected);
-        }
-        return options
-          .map((team) => {
-            const isSelected = team === selected ? "selected" : "";
-            const label = team ? formatTeamLabel(team) : "Select team";
-            return `<option value="${escapeHtml(team)}" ${isSelected}>${escapeHtml(label)}</option>`;
-          })
-          .join("");
-      }
-
       function renderBracket() {
-        bracket.classList.toggle("read-only", !adminMode);
-        round0El.classList.toggle("read-only", !adminMode);
-        const availableTeams = getAvailableTeams();
-        const baseTeamOptionValues = ["", ...availableTeams];
+        bracket.classList.add("read-only");
+        round0El.classList.add("read-only");
 
         const renderRoundHtml = (round, roundIndex) => {
           const matches = round.matches
@@ -504,28 +500,18 @@
                 <div class="match" data-round="${roundIndex}" data-match="${matchIndex}">
                   <h3>Match ${matchIndex + 1}</h3>
                   <div class="match-row">
-                    ${adminMode
-                      ? `<label class="sr-only" for="round-${roundIndex}-match-${matchIndex}-team-a">${escapeHtml(round.name)} match ${matchIndex + 1} select team A</label>
-                         <select id="round-${roundIndex}-match-${matchIndex}-team-a" data-field="teamA">
-                           ${teamOptions(match.teamA, availableTeams, baseTeamOptionValues)}
-                         </select>`
-                      : `<div class="field"><span class="sr-only">${escapeHtml(round.name)} match ${matchIndex + 1} team A</span>${escapeHtml(formatTeamLabel(match.teamA))}</div>`}
+                    <div class="field"><span class="sr-only">${escapeHtml(round.name)} match ${matchIndex + 1} team A</span>${escapeHtml(formatTeamLabel(match.teamA))}</div>
                     <label class="sr-only" for="round-${roundIndex}-match-${matchIndex}-score-a">${escapeHtml(round.name)} match ${matchIndex + 1} score A</label>
-                    <input id="round-${roundIndex}-match-${matchIndex}-score-a" data-field="scoreA" inputmode="numeric" value="${escapeHtml(match.scoreA)}" ${adminMode ? "" : "disabled"} />
+                    <input id="round-${roundIndex}-match-${matchIndex}-score-a" data-field="scoreA" inputmode="numeric" value="${escapeHtml(match.scoreA)}" disabled />
                   </div>
                   <div class="match-row">
-                    ${adminMode
-                      ? `<label class="sr-only" for="round-${roundIndex}-match-${matchIndex}-team-b">${escapeHtml(round.name)} match ${matchIndex + 1} select team B</label>
-                         <select id="round-${roundIndex}-match-${matchIndex}-team-b" data-field="teamB">
-                           ${teamOptions(match.teamB, availableTeams, baseTeamOptionValues)}
-                         </select>`
-                      : `<div class="field"><span class="sr-only">${escapeHtml(round.name)} match ${matchIndex + 1} team B</span>${escapeHtml(formatTeamLabel(match.teamB))}</div>`}
+                    <div class="field"><span class="sr-only">${escapeHtml(round.name)} match ${matchIndex + 1} team B</span>${escapeHtml(formatTeamLabel(match.teamB))}</div>
                     <label class="sr-only" for="round-${roundIndex}-match-${matchIndex}-score-b">${escapeHtml(round.name)} match ${matchIndex + 1} score B</label>
-                    <input id="round-${roundIndex}-match-${matchIndex}-score-b" data-field="scoreB" inputmode="numeric" value="${escapeHtml(match.scoreB)}" ${adminMode ? "" : "disabled"} />
+                    <input id="round-${roundIndex}-match-${matchIndex}-score-b" data-field="scoreB" inputmode="numeric" value="${escapeHtml(match.scoreB)}" disabled />
                   </div>
                   <div class="winner">
                     <label class="sr-only" for="round-${roundIndex}-match-${matchIndex}-winner">${escapeHtml(round.name)} match ${matchIndex + 1} winner</label>
-                    <select id="round-${roundIndex}-match-${matchIndex}-winner" data-field="winner" ${adminMode ? "" : "disabled"}>
+                    <select id="round-${roundIndex}-match-${matchIndex}-winner" data-field="winner" disabled>
                       ${winnerOptions(match)}
                     </select>
                   </div>
@@ -543,113 +529,30 @@
           .join("");
       }
 
-      function captureInputs() {
-        document.querySelectorAll(".match").forEach((matchEl) => {
-          const r = Number(matchEl.dataset.round);
-          const m = Number(matchEl.dataset.match);
-          if (!state.rounds[r] || !state.rounds[r].matches[m]) return;
-
-          matchEl.querySelectorAll("[data-field]").forEach((input) => {
-            const field = input.dataset.field;
-            if (field === "teamA" || field === "teamB") {
-              const rawValue = String(input.value ?? "").trim();
-              const normalizedValue = rawValue.replace(/\s*\([^)]*\)\s*$/, "");
-              state.rounds[r].matches[m][field] = normalizedValue;
-              return;
-            }
-            state.rounds[r].matches[m][field] = input.value;
-          });
-        });
-      }
-
-      function syncAdvancingTeams() {
-        for (let roundIndex = 0; roundIndex < state.rounds.length - 1; roundIndex++) {
-          const currentRound = state.rounds[roundIndex];
-          const nextRound = state.rounds[roundIndex + 1];
-          nextRound.matches.forEach((nextMatch, nextMatchIndex) => {
-            const winnerA = currentRound.matches[nextMatchIndex * 2]?.winner || "";
-            const winnerB = currentRound.matches[nextMatchIndex * 2 + 1]?.winner || "";
-            const teamsChanged = nextMatch.teamA !== winnerA || nextMatch.teamB !== winnerB;
-            nextMatch.teamA = winnerA;
-            nextMatch.teamB = winnerB;
-            if (teamsChanged) {
-              nextMatch.scoreA = "";
-              nextMatch.scoreB = "";
-            }
-            if (nextMatch.winner && nextMatch.winner !== winnerA && nextMatch.winner !== winnerB) {
-              nextMatch.winner = "";
-            }
-          });
-        }
-      }
-
-      function updateAdminUi(message) {
-        modeText.textContent = adminMode ? "Admin mode: editing enabled" : "View mode: locked";
-        saveBtn.hidden = !adminMode;
-        resetBtn.hidden = !adminMode;
-        logoutBtn.hidden = !adminMode;
-        usernameInput.disabled = adminMode;
-        passwordInput.disabled = adminMode;
-        loginForm.querySelector('button[type="submit"]').hidden = adminMode;
-        authStatus.textContent = message || (adminMode ? "Signed in as admin." : "Admin mode is off.");
+      function renderPage(message) {
         renderBracket();
+        modeText.textContent = "Shared data mode: read-only";
+        dataStatus.textContent = message;
       }
 
-      loginForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const username = usernameInput.value.trim();
-        const password = passwordInput.value;
-        if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
-          adminMode = true;
-          writeAdminSession(true);
-          passwordInput.value = "";
-          updateAdminUi("Signed in as admin. Editing is now enabled.");
-          saveBtn.focus();
-          return;
-        }
-        adminMode = false;
-        writeAdminSession(false);
-        updateAdminUi("Incorrect admin username or password.");
-      });
+      function applyState(nextState) {
+        state = nextState;
+        teamOwnerMap = Object.fromEntries(
+          state.assignments.map(({ team, owner }) => [team, owner])
+        );
+      }
 
-      logoutBtn.addEventListener("click", () => {
-        if (adminMode) {
-          captureInputs();
-          syncAdvancingTeams();
-        }
-        adminMode = false;
-        writeAdminSession(false);
-        usernameInput.disabled = false;
-        passwordInput.disabled = false;
-        usernameInput.value = "";
-        passwordInput.value = "";
-        updateAdminUi("Signed out. Admin mode is off.");
-        usernameInput.focus();
-      });
-
-      saveBtn.addEventListener("click", () => {
-        captureInputs();
-        syncAdvancingTeams();
-        saveData(state);
-        renderBracket();
-        modeText.textContent = "Admin mode: editing enabled (changes saved)";
-        authStatus.textContent = "Changes saved successfully.";
-      });
-
-      resetBtn.addEventListener("click", () => {
-        if (!confirm("Reset all bracket values to default? This will permanently delete all saved progress.")) return;
-        state = {
-          assignments: defaultAssignments,
-          rounds: generateDefaultBracket(defaultAssignments)
-        };
-        saveData(state);
+      async function initializePage() {
+        const { state: loadedState, usingFallback } = await loadData();
+        applyState(loadedState);
         renderDraw();
-        renderBracket();
-        authStatus.textContent = "Bracket reset to default values.";
-      });
-
-      renderDraw();
-      updateAdminUi(adminMode ? "Signed in as admin." : "Admin mode is off.");
+        renderPage(
+          usingFallback
+            ? `Could not load ${DATA_FILE_NAME}, so the built-in default bracket is being shown.`
+            : `Showing shared bracket data from ${DATA_FILE_NAME}. Edit that file in GitHub to publish updates.`
+        );
+      }
+      initializePage();
     </script>
   </body>
 </html>
