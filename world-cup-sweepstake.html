@@ -463,7 +463,10 @@
         }
       }
 
-      let state = createDefaultState();
+      let state = {
+        assignments: cloneAssignments(defaultAssignments),
+        rounds: []
+      };
 
       const drawGrid = document.getElementById("drawGrid");
       const round0El = document.getElementById("round0");
@@ -547,9 +550,6 @@
             : `Showing shared bracket data from ${DATA_FILE_NAME}. Edit that file in GitHub to publish updates.`
         );
       }
-
-      renderDraw();
-      renderPage(`Loading shared bracket data from ${DATA_FILE_NAME}…`);
       initializePage();
     </script>
   </body>
