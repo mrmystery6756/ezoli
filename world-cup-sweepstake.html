@@ -458,7 +458,7 @@
               )
               .join("");
 
-            return `<div class="round round-${roundIndex + 1}"><h3>${escapeHtml(round.name)}</h3><div class="round-matches">${matches}</div></div>`;
+            return `<div class="round"><h3>${escapeHtml(round.name)}</h3><div class="round-matches">${matches}</div></div>`;
           })
           .join("");
       }
