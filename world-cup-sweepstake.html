@@ -233,9 +233,15 @@
           display: none;
         }
       }
+      .round0-stage {
+        margin-bottom: 1rem;
+      }
       @media (min-width: 1080px) {
         .layout {
-          grid-template-columns: 1fr 1.5fr;
+          grid-template-columns: 1fr;
+        }
+        .round0-stage .round-matches {
+          grid-template-columns: 1fr 1fr;
         }
       }
     </style>
@@ -262,6 +268,7 @@
 
         <section class="panel" aria-labelledby="knockout-bracket-heading">
           <h2 id="knockout-bracket-heading">Knockout Bracket</h2>
+          <div id="round0" class="round0-stage"></div>
           <div id="bracket" class="bracket-columns"></div>
         </section>
       </div>
@@ -322,7 +329,7 @@
       );
 
       const roundConfig = [
-        ["Round of 48", 24],
+        ["Round of 48", 72],
         ["Round of 24", 12],
         ["Round of 12", 6],
         ["Quarter Finals", 4],
@@ -369,6 +376,20 @@
         return rounds;
       }
 
+      function migrateRounds(rounds) {
+        return rounds.map((round, roundIndex) => {
+          const configEntry = roundConfig[roundIndex];
+          if (!configEntry) return round;
+          const expectedCount = configEntry[1];
+          if (round.matches.length >= expectedCount) return round;
+          const matches = [...round.matches];
+          while (matches.length < expectedCount) {
+            matches.push({ teamA: "", teamB: "", scoreA: "", scoreB: "", winner: "" });
+          }
+          return { ...round, matches };
+        });
+      }
+
       function loadData() {
         const fallback = {
           assignments: defaultAssignments,
@@ -379,7 +400,7 @@
           if (!raw) return fallback;
           const parsed = JSON.parse(raw);
           if (!parsed?.assignments || !parsed?.rounds) return fallback;
-          return parsed;
+          return { ...parsed, rounds: migrateRounds(parsed.rounds) };
         } catch {
           return fallback;
         }
@@ -401,6 +422,7 @@
       let adminMode = readAdminSession();
 
       const drawTable = document.getElementById("drawTable");
+      const round0El = document.getElementById("round0");
       const bracket = document.getElementById("bracket");
       const modeText = document.getElementById("modeText");
       const saveBtn = document.getElementById("save");
@@ -456,14 +478,14 @@
 
       function renderBracket() {
         bracket.classList.toggle("read-only", !adminMode);
+        round0El.classList.toggle("read-only", !adminMode);
         const availableTeams = getAvailableTeams();
         const baseTeamOptionValues = ["", ...availableTeams];
 
-        bracket.innerHTML = state.rounds
-          .map((round, roundIndex) => {
-            const matches = round.matches
-              .map(
-                (match, matchIndex) => `
+        const renderRoundHtml = (round, roundIndex) => {
+          const matches = round.matches
+            .map(
+              (match, matchIndex) => `
                 <div class="match" data-round="${roundIndex}" data-match="${matchIndex}">
                   <h3>Match ${matchIndex + 1}</h3>
                   <div class="match-row">
@@ -493,11 +515,16 @@
                     </select>
                   </div>
                 </div>`
-              )
-              .join("");
+            )
+            .join("");
+          return `<div class="round round-${round.id}"><h3>${escapeHtml(round.name)}</h3><div class="round-matches">${matches}</div></div>`;
+        };
 
-            return `<div class="round round-${round.id}"><h3>${escapeHtml(round.name)}</h3><div class="round-matches">${matches}</div></div>`;
-          })
+        round0El.innerHTML = state.rounds.length > 0 ? renderRoundHtml(state.rounds[0], 0) : "";
+
+        bracket.innerHTML = state.rounds
+          .slice(1)
+          .map((round, idx) => renderRoundHtml(round, idx + 1))
           .join("");
       }
 
