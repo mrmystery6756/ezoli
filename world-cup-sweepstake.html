@@ -105,13 +105,15 @@
       th {
         color: #0f397f;
       }
-      .draw-grid {
+      .draw-grid,
+      .bonus-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
         gap: 0.3rem;
         margin-top: 0.5rem;
       }
-      .draw-item {
+      .draw-item,
+      .bonus-item {
         display: flex;
         flex-direction: column;
         background: #edf4ff;
@@ -121,12 +123,19 @@
         font-size: 0.82rem;
         line-height: 1.35;
       }
-      .draw-team {
+      .draw-team,
+      .bonus-value {
         font-weight: 700;
         color: #092f6e;
       }
-      .draw-owner {
+      .draw-owner,
+      .bonus-description,
+      .bonus-assignee {
         color: #3a5a9f;
+      }
+      .bonus-assignee {
+        margin-top: 0.2rem;
+        font-style: italic;
       }
       .bracket-columns {
         --bracket-column-gap: 1rem;
@@ -281,6 +290,11 @@
           <div id="drawGrid" class="draw-grid" role="list" aria-label="Team draw assignments"></div>
         </section>
 
+        <section class="panel" aria-labelledby="crewhu-bonuses-heading">
+          <h2 id="crewhu-bonuses-heading">Crewhu bonuses</h2>
+          <div id="bonusGrid" class="bonus-grid" role="list" aria-label="Crewhu bonus prizes"></div>
+        </section>
+
         <section class="panel" aria-labelledby="knockout-bracket-heading">
           <h2 id="knockout-bracket-heading">Knockout Bracket</h2>
           <div id="round0" class="round0-stage"></div>
@@ -315,6 +329,14 @@
         ["Senegal", "John G"], ["Norway", "John G"], ["Algeria", "Kane"], ["Jordan", "Jess"],
         ["Congo DR", "Bryce"], ["Colombia", "Liam Studd"], ["Croatia", "Jess"], ["Panama", "Liam Studd"]
       ].map(([team, owner]) => ({ team, owner }));
+
+      const defaultBonuses = [
+        { id: "most-red-cards", value: "500", description: "Most red cards across the tournament", assignee: "" },
+        { id: "most-penalties-scored", value: "500", description: "Most penalties scored across the tournament", assignee: "" },
+        { id: "fastest-goal", value: "500", description: "Fastest goal", assignee: "" },
+        { id: "knocks-out-england", value: "500", description: "Whoever knocks out England (if it happens👀)", assignee: "" },
+        { id: "first-own-goal", value: "1000", description: "First own goal", assignee: "" }
+      ];
 
       const roundConfig = [
         ["Round of 48", 72],
@@ -382,10 +404,15 @@
         return assignments.map(({ team, owner }) => ({ team, owner }));
       }
 
+      function cloneBonuses(bonuses) {
+        return bonuses.map(({ id, value, description, assignee }) => ({ id, value, description, assignee }));
+      }
+
       function createDefaultState() {
         const assignments = cloneAssignments(defaultAssignments);
         return {
           assignments,
+          bonuses: cloneBonuses(defaultBonuses),
           rounds: generateDefaultBracket(assignments)
         };
       }
@@ -398,6 +425,25 @@
           team: String(entry?.team ?? ""),
           owner: String(entry?.owner ?? "")
         }));
+      }
+
+      function normalizeBonuses(bonuses) {
+        if (!Array.isArray(bonuses) || bonuses.length === 0) {
+          return cloneBonuses(defaultBonuses);
+        }
+
+        return defaultBonuses.map((defaultBonus, index) => {
+          const bonus = bonuses[index] ?? bonuses.find((entry) => String(entry?.id ?? "") === defaultBonus.id);
+          if (!bonus) {
+            return { ...defaultBonus };
+          }
+          return {
+            id: String(bonus.id ?? defaultBonus.id),
+            value: String(bonus.value ?? defaultBonus.value),
+            description: String(bonus.description ?? defaultBonus.description),
+            assignee: String(bonus.assignee ?? "")
+          };
+        });
       }
 
       function normalizeRounds(rounds, assignments) {
@@ -437,6 +483,7 @@
         const assignments = normalizeAssignments(data?.assignments);
         return {
           assignments,
+          bonuses: normalizeBonuses(data?.bonuses),
           rounds: normalizeRounds(data?.rounds, assignments)
         };
       }
@@ -464,6 +511,7 @@
       let teamOwnerMap = {};
 
       const drawGrid = document.getElementById("drawGrid");
+      const bonusGrid = document.getElementById("bonusGrid");
       const round0El = document.getElementById("round0");
       const bracket = document.getElementById("bracket");
       const modeText = document.getElementById("modeText");
@@ -474,6 +522,15 @@
           .map(
             ({ team, owner }) =>
               `<div class="draw-item" role="listitem"><span class="draw-team">${escapeHtml(team)}</span><span class="draw-owner">${escapeHtml(owner)}</span></div>`
+          )
+          .join("");
+      }
+
+      function renderBonuses() {
+        bonusGrid.innerHTML = state.bonuses
+          .map(
+            ({ value, description, assignee }) =>
+              `<div class="bonus-item" role="listitem"><span class="bonus-value">${escapeHtml(value)}</span><span class="bonus-description">${escapeHtml(description)}</span><span class="bonus-assignee">${escapeHtml(assignee || "Unassigned")}</span></div>`
           )
           .join("");
       }
@@ -546,6 +603,7 @@
         const { state: loadedState, usingFallback } = await loadData();
         applyState(loadedState);
         renderDraw();
+        renderBonuses();
         renderPage(
           usingFallback
             ? `Could not load ${DATA_FILE_NAME}, so the built-in default bracket is being shown.`
