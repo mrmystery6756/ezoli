@@ -246,6 +246,32 @@
         <h1>World Cup 2026 Sweepstake</h1>
       </div>
 
+      <div class="layout">
+        <section class="panel" aria-labelledby="team-draw-heading">
+          <h2 id="team-draw-heading">Team Draw</h2>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Team</th>
+                <th scope="col">Name</th>
+              </tr>
+            </thead>
+            <tbody id="drawTable"></tbody>
+          </table>
+        </section>
+
+        <section class="panel" aria-labelledby="knockout-bracket-heading">
+          <h2 id="knockout-bracket-heading">Knockout Bracket</h2>
+          <div id="bracket" class="bracket-columns"></div>
+        </section>
+      </div>
+
+      <div class="toolbar" aria-label="Bracket actions">
+        <button id="save" class="primary" hidden>Save Changes</button>
+        <button id="reset" class="danger" hidden>Reset to Default</button>
+      </div>
+      <p id="modeText" class="info">View mode: locked</p>
+
       <section class="panel auth-panel" aria-labelledby="admin-login-heading">
         <h2 id="admin-login-heading">Admin access</h2>
         <form id="loginForm">
@@ -266,32 +292,6 @@
         </form>
         <p id="authStatus" class="auth-status" role="status" aria-live="polite">Admin mode is off.</p>
       </section>
-
-      <div class="toolbar" aria-label="Bracket actions">
-        <button id="save" class="primary" hidden>Save Changes</button>
-        <button id="reset" class="danger" hidden>Reset to Default</button>
-      </div>
-      <p id="modeText" class="info">View mode: locked</p>
-
-      <div class="layout">
-        <section class="panel" aria-labelledby="team-draw-heading">
-          <h2 id="team-draw-heading">Team Draw</h2>
-          <table>
-            <thead>
-              <tr>
-                <th scope="col">Team</th>
-                <th scope="col">Name</th>
-              </tr>
-            </thead>
-            <tbody id="drawTable"></tbody>
-          </table>
-        </section>
-
-        <section class="panel" aria-labelledby="knockout-bracket-heading">
-          <h2 id="knockout-bracket-heading">Knockout Bracket</h2>
-          <div id="bracket" class="bracket-columns"></div>
-        </section>
-      </div>
     </div>
 
     <script>
