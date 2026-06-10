@@ -339,9 +339,6 @@
         if (!cleanTeamName) {
           return "";
         }
-        const teamOwnerMap = Object.fromEntries(
-          state.assignments.map(({ team, owner }) => [team, owner])
-        );
         const owner = teamOwnerMap[cleanTeamName];
         return owner ? `${cleanTeamName} (${owner})` : cleanTeamName;
       }
@@ -463,10 +460,10 @@
         }
       }
 
-      let state = {
-        assignments: cloneAssignments(defaultAssignments),
-        rounds: []
-      };
+      let state = createDefaultState();
+      let teamOwnerMap = Object.fromEntries(
+        state.assignments.map(({ team, owner }) => [team, owner])
+      );
 
       const drawGrid = document.getElementById("drawGrid");
       const round0El = document.getElementById("round0");
@@ -540,9 +537,16 @@
         dataStatus.textContent = message;
       }
 
+      function setState(nextState) {
+        state = nextState;
+        teamOwnerMap = Object.fromEntries(
+          state.assignments.map(({ team, owner }) => [team, owner])
+        );
+      }
+
       async function initializePage() {
         const { state: loadedState, usingFallback } = await loadData();
-        state = loadedState;
+        setState(loadedState);
         renderDraw();
         renderPage(
           usingFallback
