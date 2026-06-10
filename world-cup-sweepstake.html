@@ -443,7 +443,7 @@
 
       async function loadData() {
         try {
-          const response = await fetch(DATA_FILE_NAME, { cache: "no-store" });
+          const response = await fetch(DATA_FILE_NAME, { cache: "no-cache" });
           if (!response.ok) {
             throw new Error(`Request failed with status ${response.status}`);
           }
@@ -460,10 +460,8 @@
         }
       }
 
-      let state = createDefaultState();
-      let teamOwnerMap = Object.fromEntries(
-        state.assignments.map(({ team, owner }) => [team, owner])
-      );
+      let state = null;
+      let teamOwnerMap = {};
 
       const drawGrid = document.getElementById("drawGrid");
       const round0El = document.getElementById("round0");
@@ -537,7 +535,7 @@
         dataStatus.textContent = message;
       }
 
-      function setState(nextState) {
+      function applyState(nextState) {
         state = nextState;
         teamOwnerMap = Object.fromEntries(
           state.assignments.map(({ team, owner }) => [team, owner])
@@ -546,7 +544,7 @@
 
       async function initializePage() {
         const { state: loadedState, usingFallback } = await loadData();
-        setState(loadedState);
+        applyState(loadedState);
         renderDraw();
         renderPage(
           usingFallback
