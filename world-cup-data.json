@@ -53,7 +53,7 @@
       "owner": "Getley"
     },
     {
-      "team": "IR Iran",
+      "team": "iran",
       "owner": "Bryce"
     },
     {
@@ -232,7 +232,7 @@
         {"teamA":"Mexico","teamB":"South Africa","scoreA":"","scoreB":"","winner":""},
         {"teamA":"South Korea","teamB":"Czechia","scoreA":"","scoreB":"","winner":""},
 
-        {"teamA":"Canada","teamB":"Bosnia & Herzegovina","scoreA":"","scoreB":"","winner":""},
+        {"teamA":"Canada","teamB":"Bosnia-Herzegovina","scoreA":"","scoreB":"","winner":""},
         {"teamA":"USA","teamB":"Paraguay","scoreA":"","scoreB":"","winner":""},
 
         {"teamA":"Qatar","teamB":"Switzerland","scoreA":"","scoreB":"","winner":""},
@@ -242,10 +242,10 @@
 
         {"teamA":"Germany","teamB":"Curaçao","scoreA":"","scoreB":"","winner":""},
         {"teamA":"Netherlands","teamB":"Japan","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Ivory Coast","teamB":"Ecuador","scoreA":"","scoreB":"","winner":""},
+        {"teamA":"Côte d'Ivoire","teamB":"Ecuador","scoreA":"","scoreB":"","winner":""},
         {"teamA":"Sweden","teamB":"Tunisia","scoreA":"","scoreB":"","winner":""},
 
-        {"teamA":"Spain","teamB":"Cape Verde","scoreA":"","scoreB":"","winner":""},
+        {"teamA":"Spain","teamB":"cabo verde","scoreA":"","scoreB":"","winner":""},
         {"teamA":"Belgium","teamB":"Egypt","scoreA":"","scoreB":"","winner":""},
         {"teamA":"Saudi Arabia","teamB":"Uruguay","scoreA":"","scoreB":"","winner":""},
         {"teamA":"Iran","teamB":"New Zealand","scoreA":"","scoreB":"","winner":""},
@@ -255,13 +255,13 @@
         {"teamA":"Argentina","teamB":"Algeria","scoreA":"","scoreB":"","winner":""},
         {"teamA":"Austria","teamB":"Jordan","scoreA":"","scoreB":"","winner":""},
 
-        {"teamA":"Portugal","teamB":"DR Congo","scoreA":"","scoreB":"","winner":""},
+        {"teamA":"Portugal","teamB":"congo dr","scoreA":"","scoreB":"","winner":""},
         {"teamA":"England","teamB":"Croatia","scoreA":"","scoreB":"","winner":""},
         {"teamA":"Ghana","teamB":"Panama","scoreA":"","scoreB":"","winner":""},
         {"teamA":"Uzbekistan","teamB":"Colombia","scoreA":"","scoreB":"","winner":""},
 
         {"teamA":"Czechia","teamB":"South Africa","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Switzerland","teamB":"Bosnia & Herzegovina","scoreA":"","scoreB":"","winner":""},
+        {"teamA":"Switzerland","teamB":"Bosnia-Herzegovina","scoreA":"","scoreB":"","winner":""},
         {"teamA":"Canada","teamB":"Qatar","scoreA":"","scoreB":"","winner":""},
         {"teamA":"Mexico","teamB":"South Korea","scoreA":"","scoreB":"","winner":""},
 
@@ -271,13 +271,13 @@
         {"teamA":"Türkiye","teamB":"Paraguay","scoreA":"","scoreB":"","winner":""},
 
         {"teamA":"Netherlands","teamB":"Sweden","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Germany","teamB":"Ivory Coast","scoreA":"","scoreB":"","winner":""},
+        {"teamA":"Germany","teamB":"Côte d'Ivoire","scoreA":"","scoreB":"","winner":""},
         {"teamA":"Tunisia","teamB":"Japan","scoreA":"","scoreB":"","winner":""},
         {"teamA":"Ecuador","teamB":"Curaçao","scoreA":"","scoreB":"","winner":""},
 
         {"teamA":"Spain","teamB":"Saudi Arabia","scoreA":"","scoreB":"","winner":""},
         {"teamA":"Belgium","teamB":"Iran","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Uruguay","teamB":"Cape Verde","scoreA":"","scoreB":"","winner":""},
+        {"teamA":"Uruguay","teamB":"cabo verde","scoreA":"","scoreB":"","winner":""},
         {"teamA":"New Zealand","teamB":"Egypt","scoreA":"","scoreB":"","winner":""},
 
         {"teamA":"France","teamB":"Iraq","scoreA":"","scoreB":"","winner":""},
@@ -286,14 +286,14 @@
         {"teamA":"Jordan","teamB":"Algeria","scoreA":"","scoreB":"","winner":""},
 
         {"teamA":"Portugal","teamB":"Uzbekistan","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Colombia","teamB":"DR Congo","scoreA":"","scoreB":"","winner":""},
+        {"teamA":"Colombia","teamB":"congo dr","scoreA":"","scoreB":"","winner":""},
         {"teamA":"England","teamB":"Ghana","scoreA":"","scoreB":"","winner":""},
         {"teamA":"Panama","teamB":"Croatia","scoreA":"","scoreB":"","winner":""},
 
         {"teamA":"Mexico","teamB":"Czechia","scoreA":"","scoreB":"","winner":""},
         {"teamA":"South Africa","teamB":"South Korea","scoreA":"","scoreB":"","winner":""},
         {"teamA":"Canada","teamB":"Switzerland","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Bosnia & Herzegovina","teamB":"Qatar","scoreA":"","scoreB":"","winner":""},
+        {"teamA":"Bosnia-Herzegovina","teamB":"Qatar","scoreA":"","scoreB":"","winner":""},
 
         {"teamA":"Brazil","teamB":"Scotland","scoreA":"","scoreB":"","winner":""},
         {"teamA":"Morocco","teamB":"Haiti","scoreA":"","scoreB":"","winner":""},
@@ -301,12 +301,12 @@
         {"teamA":"Paraguay","teamB":"Australia","scoreA":"","scoreB":"","winner":""},
 
         {"teamA":"Germany","teamB":"Ecuador","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Ivory Coast","teamB":"Curaçao","scoreA":"","scoreB":"","winner":""},
+        {"teamA":"Côte d'Ivoire","teamB":"Curaçao","scoreA":"","scoreB":"","winner":""},
         {"teamA":"Netherlands","teamB":"Tunisia","scoreA":"","scoreB":"","winner":""},
         {"teamA":"Sweden","teamB":"Japan","scoreA":"","scoreB":"","winner":""},
 
         {"teamA":"Spain","teamB":"Uruguay","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Cape Verde","teamB":"Saudi Arabia","scoreA":"","scoreB":"","winner":""},
+        {"teamA":"cabo verde","teamB":"Saudi Arabia","scoreA":"","scoreB":"","winner":""},
         {"teamA":"Belgium","teamB":"New Zealand","scoreA":"","scoreB":"","winner":""},
         {"teamA":"Egypt","teamB":"Iran","scoreA":"","scoreB":"","winner":""},
 
@@ -316,7 +316,7 @@
         {"teamA":"Algeria","teamB":"Austria","scoreA":"","scoreB":"","winner":""},
 
         {"teamA":"Portugal","teamB":"Colombia","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"DR Congo","teamB":"Uzbekistan","scoreA":"","scoreB":"","winner":""},
+        {"teamA":"congo dr","teamB":"Uzbekistan","scoreA":"","scoreB":"","winner":""},
         {"teamA":"England","teamB":"Panama","scoreA":"","scoreB":"","winner":""},
         {"teamA":"Croatia","teamB":"Ghana","scoreA":"","scoreB":"","winner":""}
       ]
