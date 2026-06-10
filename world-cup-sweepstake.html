@@ -381,8 +381,8 @@
           const configEntry = roundConfig[roundIndex];
           if (!configEntry) return round;
           const expectedCount = configEntry[1];
-          if (round.matches.length >= expectedCount) return round;
-          const matches = [...round.matches];
+          if (round.matches.length === expectedCount) return round;
+          const matches = round.matches.slice(0, expectedCount);
           while (matches.length < expectedCount) {
             matches.push({ teamA: "", teamB: "", scoreA: "", scoreB: "", winner: "" });
           }
