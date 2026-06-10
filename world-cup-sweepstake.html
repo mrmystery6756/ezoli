@@ -191,6 +191,15 @@
         border-radius: 6px;
         box-sizing: border-box;
       }
+      .read-only input,
+      .read-only select {
+        background: #ffffff;
+        color: #092f6e;
+        opacity: 1;
+      }
+      .read-only select option {
+        color: #092f6e;
+      }
       .field-group {
         display: grid;
         gap: 0.75rem;
@@ -198,10 +207,6 @@
       }
       .winner {
         margin-top: 0.4rem;
-      }
-      .read-only input,
-      .read-only select {
-        background: #edf2fa;
       }
       .sr-only {
         position: absolute;
