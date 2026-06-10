@@ -1,0 +1,913 @@
+{
+  "assignments": [
+    {
+      "team": "Mexico",
+      "owner": "Alec"
+    },
+    {
+      "team": "South Korea",
+      "owner": "Liam Spence"
+    },
+    {
+      "team": "Canada",
+      "owner": "James Steers"
+    },
+    {
+      "team": "Qatar",
+      "owner": "James Steers"
+    },
+    {
+      "team": "Brazil",
+      "owner": "Brenden"
+    },
+    {
+      "team": "Haiti",
+      "owner": "Treats"
+    },
+    {
+      "team": "USA",
+      "owner": "James Steers"
+    },
+    {
+      "team": "Australia",
+      "owner": "Jess"
+    },
+    {
+      "team": "Germany",
+      "owner": "Rory"
+    },
+    {
+      "team": "Côte d'Ivoire",
+      "owner": "Getley"
+    },
+    {
+      "team": "Netherlands",
+      "owner": "Sam"
+    },
+    {
+      "team": "Sweden",
+      "owner": "John G"
+    },
+    {
+      "team": "Belgium",
+      "owner": "Getley"
+    },
+    {
+      "team": "IR Iran",
+      "owner": "Bryce"
+    },
+    {
+      "team": "Spain",
+      "owner": "Oli"
+    },
+    {
+      "team": "Saudi Arabia",
+      "owner": "Rory"
+    },
+    {
+      "team": "France",
+      "owner": "Bryce"
+    },
+    {
+      "team": "Iraq",
+      "owner": "Sam"
+    },
+    {
+      "team": "Argentina",
+      "owner": "Liam Spence"
+    },
+    {
+      "team": "Austria",
+      "owner": "Jlamb"
+    },
+    {
+      "team": "Portugal",
+      "owner": "Leon"
+    },
+    {
+      "team": "Uzbekistan",
+      "owner": "Liam Spence"
+    },
+    {
+      "team": "England",
+      "owner": "Kane"
+    },
+    {
+      "team": "Ghana",
+      "owner": "Leon"
+    },
+    {
+      "team": "South Africa",
+      "owner": "Getley"
+    },
+    {
+      "team": "Czechia",
+      "owner": "Liam Studd"
+    },
+    {
+      "team": "Bosnia-Herzegovina",
+      "owner": "Kane"
+    },
+    {
+      "team": "Switzerland",
+      "owner": "Leon"
+    },
+    {
+      "team": "Morocco",
+      "owner": "Jlamb"
+    },
+    {
+      "team": "Scotland",
+      "owner": "Alec"
+    },
+    {
+      "team": "Paraguay",
+      "owner": "Brenden"
+    },
+    {
+      "team": "Türkiye",
+      "owner": "Alec"
+    },
+    {
+      "team": "Curaçao",
+      "owner": "Treats"
+    },
+    {
+      "team": "Ecuador",
+      "owner": "Sam"
+    },
+    {
+      "team": "Japan",
+      "owner": "Rory"
+    },
+    {
+      "team": "Tunisia",
+      "owner": "Oli"
+    },
+    {
+      "team": "Egypt",
+      "owner": "Oli"
+    },
+    {
+      "team": "New Zealand",
+      "owner": "Treats"
+    },
+    {
+      "team": "Cabo Verde",
+      "owner": "Jlamb"
+    },
+    {
+      "team": "Uruguay",
+      "owner": "Brenden"
+    },
+    {
+      "team": "Senegal",
+      "owner": "John G"
+    },
+    {
+      "team": "Norway",
+      "owner": "John G"
+    },
+    {
+      "team": "Algeria",
+      "owner": "Kane"
+    },
+    {
+      "team": "Jordan",
+      "owner": "Jess"
+    },
+    {
+      "team": "Congo DR",
+      "owner": "Bryce"
+    },
+    {
+      "team": "Colombia",
+      "owner": "Liam Studd"
+    },
+    {
+      "team": "Croatia",
+      "owner": "Jess"
+    },
+    {
+      "team": "Panama",
+      "owner": "Liam Studd"
+    }
+  ],
+  "rounds": [
+    {
+      "id": 0,
+      "name": "Round of 48",
+      "matches": [
+        {
+          "teamA": "Mexico",
+          "teamB": "South Korea",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "Canada",
+          "teamB": "Qatar",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "Brazil",
+          "teamB": "Haiti",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "USA",
+          "teamB": "Australia",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "Germany",
+          "teamB": "Côte d'Ivoire",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "Netherlands",
+          "teamB": "Sweden",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "Belgium",
+          "teamB": "IR Iran",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "Spain",
+          "teamB": "Saudi Arabia",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "France",
+          "teamB": "Iraq",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "Argentina",
+          "teamB": "Austria",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "Portugal",
+          "teamB": "Uzbekistan",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "England",
+          "teamB": "Ghana",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "South Africa",
+          "teamB": "Czechia",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "Bosnia-Herzegovina",
+          "teamB": "Switzerland",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "Morocco",
+          "teamB": "Scotland",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "Paraguay",
+          "teamB": "Türkiye",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "Curaçao",
+          "teamB": "Ecuador",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "Japan",
+          "teamB": "Tunisia",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "Egypt",
+          "teamB": "New Zealand",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "Cabo Verde",
+          "teamB": "Uruguay",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "Senegal",
+          "teamB": "Norway",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "Algeria",
+          "teamB": "Jordan",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "Congo DR",
+          "teamB": "Colombia",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "Croatia",
+          "teamB": "Panama",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Round of 24",
+      "matches": [
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Round of 12",
+      "matches": [
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Quarter Finals",
+      "matches": [
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Semi Finals",
+      "matches": [
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Final",
+      "matches": [
+        {
+          "teamA": "",
+          "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        }
+      ]
+    }
+  ]
+}
