@@ -198,7 +198,7 @@
       "id": "most-red-cards",
       "value": "500",
       "description": "Most red cards across the tournament",
-      "assignee": ""
+      "assignee": "Current: Getley/Alec"
     },
     {
       "id": "most-penalties-scored",
@@ -210,7 +210,7 @@
       "id": "fastest-goal",
       "value": "500",
       "description": "Fastest goal",
-      "assignee": ""
+      "assignee": "Current: Alec (9')"
     },
     {
       "id": "knocks-out-england",
@@ -229,8 +229,8 @@
     {
       "name": "Group Stage",
       "matches": [
-        {"teamA":"Mexico","teamB":"South Africa","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"South Korea","teamB":"Czechia","scoreA":"","scoreB":"","winner":""},
+        {"teamA":"Mexico","teamB":"South Africa","scoreA":"2","scoreB":"0","winner":"Mexico"},
+        {"teamA":"South Korea","teamB":"Czechia","scoreA":"2","scoreB":"1","winner":"South Korea"},
 
         {"teamA":"Canada","teamB":"Bosnia-Herzegovina","scoreA":"","scoreB":"","winner":""},
         {"teamA":"USA","teamB":"Paraguay","scoreA":"","scoreB":"","winner":""},
