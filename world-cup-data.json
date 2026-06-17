@@ -204,13 +204,13 @@
       "id": "most-penalties-scored",
       "value": "500",
       "description": "Most penalties scored across the tournament",
-      "assignee": ""
+      "assignee": "Switzerland (1), Germany (1), Austria (1)"
     },
     {
       "id": "fastest-goal",
       "value": "500",
       "description": "Fastest goal",
-      "assignee": "Current: Alec (9')"
+      "assignee": "Current: Germany (6')"
     },
     {
       "id": "knocks-out-england",
@@ -222,7 +222,7 @@
       "id": "first-own-goal",
       "value": "1000",
       "description": "First own goal",
-      "assignee": ""
+      "assignee": "USA"
     }
   ],
   "rounds": [
@@ -232,28 +232,28 @@
         {"teamA":"Mexico","teamB":"South Africa","scoreA":"2","scoreB":"0","winner":"Mexico"},
         {"teamA":"South Korea","teamB":"Czechia","scoreA":"2","scoreB":"1","winner":"South Korea"},
 
-        {"teamA":"Canada","teamB":"Bosnia-Herzegovina","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"USA","teamB":"Paraguay","scoreA":"","scoreB":"","winner":""},
+        {"teamA":"Canada","teamB":"Bosnia-Herzegovina","scoreA":"1","scoreB":"1","winner":"N/A"},
+        {"teamA":"USA","teamB":"Paraguay","scoreA":"4","scoreB":"1","winner":"USA"},
 
-        {"teamA":"Qatar","teamB":"Switzerland","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Brazil","teamB":"Morocco","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Haiti","teamB":"Scotland","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Australia","teamB":"Türkiye","scoreA":"","scoreB":"","winner":""},
+        {"teamA":"Qatar","teamB":"Switzerland","scoreA":"1","scoreB":"1","winner":"N/A"},
+        {"teamA":"Brazil","teamB":"Morocco","scoreA":"1","scoreB":"1","winner":"N/A"},
+        {"teamA":"Haiti","teamB":"Scotland","scoreA":"0","scoreB":"1","winner":"Scotland"},
+        {"teamA":"Australia","teamB":"Türkiye","scoreA":"2","scoreB":"0","winner":"Australia"},
 
-        {"teamA":"Germany","teamB":"Curaçao","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Netherlands","teamB":"Japan","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Côte d'Ivoire","teamB":"Ecuador","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Sweden","teamB":"Tunisia","scoreA":"","scoreB":"","winner":""},
+        {"teamA":"Germany","teamB":"Curaçao","scoreA":"7","scoreB":"1","winner":"Germany"},
+        {"teamA":"Netherlands","teamB":"Japan","scoreA":"2","scoreB":"2","winner":"N/A"},
+        {"teamA":"Côte d'Ivoire","teamB":"Ecuador","scoreA":"1","scoreB":"0","winner":"Côte d'Ivoire"},
+        {"teamA":"Sweden","teamB":"Tunisia","scoreA":"5","scoreB":"1","winner":"Sweden"},
 
-        {"teamA":"Spain","teamB":"Cabo Verde","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Belgium","teamB":"Egypt","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Saudi Arabia","teamB":"Uruguay","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Iran","teamB":"New Zealand","scoreA":"","scoreB":"","winner":""},
+        {"teamA":"Spain","teamB":"Cabo Verde","scoreA":"0","scoreB":"0","winner":"N/A"},
+        {"teamA":"Belgium","teamB":"Egypt","scoreA":"1","scoreB":"1","winner":"N/A"},
+        {"teamA":"Saudi Arabia","teamB":"Uruguay","scoreA":"1","scoreB":"1","winner":"N/A"},
+        {"teamA":"Iran","teamB":"New Zealand","scoreA":"2","scoreB":"2","winner":"N/A"},
 
-        {"teamA":"France","teamB":"Senegal","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Iraq","teamB":"Norway","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Argentina","teamB":"Algeria","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Austria","teamB":"Jordan","scoreA":"","scoreB":"","winner":""},
+        {"teamA":"France","teamB":"Senegal","scoreA":"3","scoreB":"1","winner":"France"},
+        {"teamA":"Iraq","teamB":"Norway","scoreA":"1","scoreB":"4","winner":"Norway"},
+        {"teamA":"Argentina","teamB":"Algeria","scoreA":"3","scoreB":"0","winner":"Argentina"},
+        {"teamA":"Austria","teamB":"Jordan","scoreA":"3","scoreB":"1","winner":"Austria"},
 
         {"teamA":"Portugal","teamB":"Congo DR","scoreA":"","scoreB":"","winner":""},
         {"teamA":"England","teamB":"Croatia","scoreA":"","scoreB":"","winner":""},
