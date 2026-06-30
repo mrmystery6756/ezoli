@@ -255,40 +255,40 @@
         {"teamA":"Argentina","teamB":"Algeria","scoreA":"3","scoreB":"0","winner":"Argentina"},
         {"teamA":"Austria","teamB":"Jordan","scoreA":"3","scoreB":"1","winner":"Austria"},
 
-        {"teamA":"Portugal","teamB":"Congo DR","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"England","teamB":"Croatia","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Ghana","teamB":"Panama","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Uzbekistan","teamB":"Colombia","scoreA":"","scoreB":"","winner":""},
+        {"teamA":"Portugal","teamB":"Congo DR","scoreA":"1","scoreB":"1","winner":""},
+        {"teamA":"England","teamB":"Croatia","scoreA":"4","scoreB":"2","winner":""},
+        {"teamA":"Ghana","teamB":"Panama","scoreA":"1","scoreB":"0","winner":""},
+        {"teamA":"Uzbekistan","teamB":"Colombia","scoreA":"1","scoreB":"3","winner":""},
 
-        {"teamA":"Czechia","teamB":"South Africa","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Switzerland","teamB":"Bosnia-Herzegovina","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Canada","teamB":"Qatar","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Mexico","teamB":"South Korea","scoreA":"","scoreB":"","winner":""},
+        {"teamA":"Czechia","teamB":"South Africa","scoreA":"1","scoreB":"1","winner":""},
+        {"teamA":"Switzerland","teamB":"Bosnia-Herzegovina","scoreA":"4","scoreB":"1","winner":""},
+        {"teamA":"Canada","teamB":"Qatar","scoreA":"6","scoreB":"0","winner":""},
+        {"teamA":"Mexico","teamB":"South Korea","scoreA":1"","scoreB":"0","winner":""},
 
-        {"teamA":"USA","teamB":"Australia","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Scotland","teamB":"Morocco","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Brazil","teamB":"Haiti","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Türkiye","teamB":"Paraguay","scoreA":"","scoreB":"","winner":""},
+        {"teamA":"USA","teamB":"Australia","scoreA":"2","scoreB":"0","winner":""},
+        {"teamA":"Scotland","teamB":"Morocco","scoreA":"0","scoreB":"1","winner":""},
+        {"teamA":"Brazil","teamB":"Haiti","scoreA":"3","scoreB":"0","winner":""},
+        {"teamA":"Türkiye","teamB":"Paraguay","scoreA":"0","scoreB":"1","winner":""},
 
-        {"teamA":"Netherlands","teamB":"Sweden","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Germany","teamB":"Côte d'Ivoire","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Tunisia","teamB":"Japan","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Ecuador","teamB":"Curaçao","scoreA":"","scoreB":"","winner":""},
+        {"teamA":"Netherlands","teamB":"Sweden","scoreA":"5","scoreB":"1","winner":""},
+        {"teamA":"Germany","teamB":"Côte d'Ivoire","scoreA":"2","scoreB":"1","winner":""},
+        {"teamA":"Tunisia","teamB":"Japan","scoreA":"0","scoreB":"4","winner":""},
+        {"teamA":"Ecuador","teamB":"Curaçao","scoreA":"0","scoreB":"0","winner":""},
 
-        {"teamA":"Spain","teamB":"Saudi Arabia","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Belgium","teamB":"Iran","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Uruguay","teamB":"Cabo Verde","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"New Zealand","teamB":"Egypt","scoreA":"","scoreB":"","winner":""},
+        {"teamA":"Spain","teamB":"Saudi Arabia","scoreA":"4","scoreB":"0","winner":""},
+        {"teamA":"Belgium","teamB":"Iran","scoreA":"0","scoreB":"0","winner":""},
+        {"teamA":"Uruguay","teamB":"Cabo Verde","scoreA":"2","scoreB":"2","winner":""},
+        {"teamA":"New Zealand","teamB":"Egypt","scoreA":"1","scoreB":"3","winner":""},
 
-        {"teamA":"France","teamB":"Iraq","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Norway","teamB":"Senegal","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Argentina","teamB":"Austria","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Jordan","teamB":"Algeria","scoreA":"","scoreB":"","winner":""},
+        {"teamA":"France","teamB":"Iraq","scoreA":"3","scoreB":"0","winner":""},
+        {"teamA":"Norway","teamB":"Senegal","scoreA":"3","scoreB":"2","winner":""},
+        {"teamA":"Argentina","teamB":"Austria","scoreA":"2","scoreB":"0","winner":""},
+        {"teamA":"Jordan","teamB":"Algeria","scoreA":"1","scoreB":"2","winner":""},
 
-        {"teamA":"Portugal","teamB":"Uzbekistan","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Colombia","teamB":"Congo DR","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"England","teamB":"Ghana","scoreA":"","scoreB":"","winner":""},
-        {"teamA":"Panama","teamB":"Croatia","scoreA":"","scoreB":"","winner":""},
+        {"teamA":"Portugal","teamB":"Uzbekistan","scoreA":"5","scoreB":"0","winner":""},
+        {"teamA":"Colombia","teamB":"Congo DR","scoreA":"1","scoreB":"0","winner":""},
+        {"teamA":"England","teamB":"Ghana","scoreA":"0","scoreB":"0","winner":""},
+        {"teamA":"Panama","teamB":"Croatia","scoreA":"0","scoreB":"1","winner":""},
 
         {"teamA":"Mexico","teamB":"Czechia","scoreA":"","scoreB":"","winner":""},
         {"teamA":"South Africa","teamB":"South Korea","scoreA":"","scoreB":"","winner":""},
@@ -323,88 +323,116 @@
     },
     {
       "id": 1,
-      "name": "Round of 24",
+      "name": "Round of 32",
       "matches": [
         {
-          "teamA": "",
-          "teamB": "",
+          "teamA": "Germany",
+          "teamB": "Paraguay",
+          "scoreA": "1(3)",
+          "scoreB": "1(4)",
+          "winner": "Paraguay"
+        },
+        {
+          "teamA": "France",
+          "teamB": "Sweden",
           "scoreA": "",
           "scoreB": "",
           "winner": ""
         },
         {
-          "teamA": "",
-          "teamB": "",
+          "teamA": "South Africa",
+          "teamB": "Canada",
+          "scoreA": "0",
+          "scoreB": "1",
+          "winner": "Canada"
+        },
+        {
+          "teamA": "Netherlands",
+          "teamB": "Morocco",
+          "scoreA": "1(2)",
+          "scoreB": "1(3)",
+          "winner": "Morocco"
+        },
+        {
+          "teamA": "Portugal",
+          "teamB": "Croatia",
           "scoreA": "",
           "scoreB": "",
           "winner": ""
         },
         {
-          "teamA": "",
-          "teamB": "",
+          "teamA": "Spain",
+          "teamB": "Austria",
           "scoreA": "",
           "scoreB": "",
           "winner": ""
         },
         {
-          "teamA": "",
-          "teamB": "",
+          "teamA": "USA",
+          "teamB": "Bosnia-Herzegovina",
           "scoreA": "",
           "scoreB": "",
           "winner": ""
         },
         {
-          "teamA": "",
-          "teamB": "",
+          "teamA": "Belgium",
+          "teamB": "Senegal",
           "scoreA": "",
           "scoreB": "",
           "winner": ""
         },
         {
-          "teamA": "",
-          "teamB": "",
+          "teamA": "Brazil",
+          "teamB": "Japan",
+          "scoreA": "2",
+          "scoreB": "1",
+          "winner": "Brazil"
+        },
+        {
+          "teamA": "Ivory Coast",
+          "teamB": "Norway",
           "scoreA": "",
           "scoreB": "",
           "winner": ""
         },
         {
-          "teamA": "",
-          "teamB": "",
+          "teamA": "Mexico",
+          "teamB": "Ecuador",
           "scoreA": "",
           "scoreB": "",
           "winner": ""
         },
         {
-          "teamA": "",
-          "teamB": "",
+          "teamA": "England",
+          "teamB": "Congo DR",
           "scoreA": "",
           "scoreB": "",
           "winner": ""
         },
         {
-          "teamA": "",
-          "teamB": "",
+          "teamA": "Argentina",
+          "teamB": "Cabo Verde",
           "scoreA": "",
           "scoreB": "",
           "winner": ""
         },
         {
-          "teamA": "",
-          "teamB": "",
+          "teamA": "Australia",
+          "teamB": "Egypt",
           "scoreA": "",
           "scoreB": "",
           "winner": ""
         },
         {
-          "teamA": "",
-          "teamB": "",
+          "teamA": "Switzerland",
+          "teamB": "Algeria",
           "scoreA": "",
           "scoreB": "",
           "winner": ""
         },
         {
-          "teamA": "",
-          "teamB": "",
+          "teamA": "Colombia",
+          "teamB": "Ghana",
           "scoreA": "",
           "scoreB": "",
           "winner": ""
@@ -413,11 +441,18 @@
     },
     {
       "id": 2,
-      "name": "Round of 12",
+      "name": "Round of 16",
       "matches": [
         {
-          "teamA": "",
+          "teamA": "Paraguay",
           "teamB": "",
+          "scoreA": "",
+          "scoreB": "",
+          "winner": ""
+        },
+        {
+          "teamA": "Canada",
+          "teamB": "Morocco",
           "scoreA": "",
           "scoreB": "",
           "winner": ""
@@ -437,14 +472,7 @@
           "winner": ""
         },
         {
-          "teamA": "",
-          "teamB": "",
-          "scoreA": "",
-          "scoreB": "",
-          "winner": ""
-        },
-        {
-          "teamA": "",
+          "teamA": "Brazil",
           "teamB": "",
           "scoreA": "",
           "scoreB": "",
